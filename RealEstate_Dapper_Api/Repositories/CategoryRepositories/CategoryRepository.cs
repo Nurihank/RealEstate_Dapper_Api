@@ -10,7 +10,7 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepositories
         private readonly Context _context;
 
 
-        //çağırdığımı context construct yazdık 
+        //çağırdığımı context constructın içine yazdık 
         //bağlantıyı getirdik
         public CategoryRepository(Context context) 
         {
@@ -73,6 +73,19 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepositories
                 await connections.ExecuteAsync(query, parameters);
             }
 
+        }
+
+        public async Task<GetIdCategoryDto> GetCategory(int id)
+        {
+            string query = "SELECT * FROM Category WHERE CategoryID = @id";
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+
+            using (var connections = _context.CreateConnection())
+            {
+                var values = await connections.QueryFirstOrDefaultAsync<GetIdCategoryDto>(query,parameters);
+                return values;
+            }
         }
     }
 }
