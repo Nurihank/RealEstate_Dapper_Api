@@ -7,11 +7,11 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly Context _context;
+        private readonly Context _context;  
 
 
         //çağırdığımı context constructın içine yazdık 
-        //bağlantıyı getirdik
+        //bağlantıyı getirdik ve yukarda çağırdığımız _contexte atacak
         public CategoryRepository(Context context) 
         {
             _context = context;
@@ -56,8 +56,6 @@ namespace RealEstate_Dapper_Api.Repositories.CategoryRepositories
             }
                 
         }
-
-       
 
         public async void UpdateCategory(UpdateCategoryDto categoryDto)
         {

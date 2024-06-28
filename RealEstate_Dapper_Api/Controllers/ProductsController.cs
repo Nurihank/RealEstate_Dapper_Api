@@ -14,11 +14,18 @@ namespace RealEstate_Dapper_Api.Controllers
             _productRepository = productRepository;
         }
 
-        [HttpGet]
+      /*  [HttpGet]
 
         public async Task<IActionResult> ProductList()
         {
             var values = await _productRepository.GetAllProductsAsync();
+            return Ok(values);
+        }*/
+
+        [HttpGet]
+        public async Task<IActionResult> ProductWithCategoryNameList()
+        {
+            var values = await _productRepository.GetAllProductsWithCategoryAsync();
             return Ok(values);
         }
     }

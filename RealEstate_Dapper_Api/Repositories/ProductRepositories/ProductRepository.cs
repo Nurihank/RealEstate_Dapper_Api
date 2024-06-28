@@ -27,5 +27,16 @@ namespace RealEstate_Dapper_Api.Repositories.ProductRepositories
                 return values.ToList();
             }
         }
+
+        public async Task<List<ResultProductWithCategoryDtocs>> GetAllProductsWithCategoryAsync()
+        {
+            string query = "SELECT ProductID,Title,Price,City,District,CategoryName FROM Product INNER JOIN Category ON Product.ProductCategory = Category.CategoryID";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultProductWithCategoryDtocs>(query);
+                return values.ToList();
+            }
+        }
     }
 }
